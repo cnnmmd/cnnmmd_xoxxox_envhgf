@@ -2,17 +2,10 @@ FROM ubuntu:22.04
 
 ENV OPTAPT=""
 #ENV OPTAPT="-o Acquire::AllowInsecureRepositories=true -o Acquire::AllowDowngradeToInsecureRepositories=true"
-RUN apt-get ${OPTAPT} -y update
-RUN apt-get ${OPTAPT} -y upgrade
-RUN apt-get ${OPTAPT} -y install git
-RUN apt-get ${OPTAPT} -y install python3
-RUN apt-get ${OPTAPT} -y install pip
-RUN ln -s /usr/bin/python3.10 /usr/bin/python
-RUN pip install torch
-RUN pip install transformers
-RUN pip install accelerate
-RUN pip install sentencepiece
-RUN pip install protobuf
-RUN pip install bitsandbytes
-RUN pip install soundfile
-RUN pip install aiohttp
+RUN \
+  apt-get ${OPTAPT} -y update && \
+  apt-get ${OPTAPT} -y upgrade && \
+  apt-get ${OPTAPT} -y install python3 python3-pip python-is-python3 && \
+  apt-get ${OPTAPT} -y install git && \
+  rm -rf /var/lib/apt/lists/*
+RUN pip3 install --no-cache-dir torch transformers accelerate sentencepiece protobuf bitsandbytes soundfile aiohttp
