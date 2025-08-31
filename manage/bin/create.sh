@@ -7,7 +7,7 @@ source "${pthcrr}"/params.sh
 
 pthapp="${pthsrc}"/envhgf
 test -d "${pthapp}" || mkdir "${pthapp}"
-cd "${pthapp}" &&test -d hgf || mkdir hgf
+cd "${pthapp}" && test -d hgf || mkdir hgf
 addimg ${imgtgt} "${cnfimg}" "${pthdoc}"
 
 pthkey="${pthapp}"/hgf/token
